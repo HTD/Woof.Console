@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Woof.ConsoleEx;
 using Woof.ConsoleEx.ConsoleFilters;
 
-class Program {
+class Demo {
 
     static void Main() {        
         Console.SetOut(new HexColor());
@@ -12,9 +12,12 @@ class Program {
         Console.WriteLine();
         var tasksCount = TasksLeft = 8;
         for (int i = 0; i < tasksCount; i++) {
-            Console.Write($"Starting test task #{i + 1}...");
-            Task.Run(async () => await TestTask(new ConsoleProgress()));
-            Task.Delay(16).Wait();
+            lock (L1) {
+                Console.Write($"Starting test task #{i + 1}...");
+                var progress = new ConsoleProgress();
+                Task.Run(async () => await TestTask(progress));
+                Task.Delay(1).Wait();
+            }
         }
         Semaphore.Wait();
         Console.WriteLine();
@@ -23,14 +26,16 @@ class Program {
         PRNG.NextBytes(testData);
         hexDump.Write(testData);
         Console.WriteLine();
-        Console.SetOut(new Delay());
+        var delayFilter = new Delay();
+        Console.SetOut(delayFilter);
         Console.WriteLine("Testing `0ff`Delay` filter..............`070`OK!`");
+        Console.SetOut(delayFilter.Out); // remove the delay filter.
         Console.WriteLine();
         ConsoleEx.WaitForCtrlC("All test completed successfully, press Ctrl+C to exit...");
     }
 
     public static async Task TestTask(ConsoleProgress p) {
-        var randomDelayValue = PRNG.Next(50, 250);
+        var randomDelayValue = PRNG.Next(50, 150);
         for (int i = 0; i < 10; i++) {
             await Task.Delay(randomDelayValue);
             p.Dot();
@@ -45,4 +50,3 @@ class Program {
     private static readonly Random PRNG = new Random();
 
 }
-

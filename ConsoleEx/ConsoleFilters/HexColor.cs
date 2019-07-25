@@ -162,7 +162,7 @@ namespace Woof.ConsoleEx.ConsoleFilters {
         /// <summary>
         /// Console out text writer.
         /// </summary>
-        readonly TextWriter Out;
+        public readonly TextWriter Out;
 
     }
 
