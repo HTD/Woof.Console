@@ -1,0 +1,594 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Woof.Console</name>
+    </assembly>
+    <members>
+        <member name="T:Woof.ConsoleEx.CommandLine">
+            <summary>
+            Command line arguments processing class.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLine.IsEmpty">
+            <summary>
+            Gets a value indicating whether the command line is empty.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLine.HasParameters">
+            <summary>
+            Gets a value indicating whether the command line contains any unprefixed parameters.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLine.HasOptions">
+            <summary>
+            Gets a value indicating whether the command lines contains prefixed options.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLine.Parameters">
+            <summary>
+            Gets all parameters (arguments not prefixed with a switch).
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLine.Options">
+            <summary>
+            Gets all options (arguments prefixed with a switch).
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.CommandLine.#ctor(System.String[])">
+            <summary>
+            Parses command line arguments into parameters and options.
+            </summary>
+            <param name="args">Command line arguments.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.CommandLine.HasParameter(System.String)">
+            <summary>
+            Returns true if command line contains specified parameter.
+            </summary>
+            <param name="value">Parameter name.</param>
+            <returns>True if command line contains the parameter specified.</returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.CommandLine.HasOption(System.String)">
+            <summary>
+            Returns true if command line contains specified option.
+            </summary>
+            <param name="value">Option name or names separated with "|".</param>
+            <returns>True if command line contains the option specified.</returns>
+        </member>
+        <member name="F:Woof.ConsoleEx.CommandLine.RxElement">
+            <summary>
+            Matches element with or without optional switch.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.CommandLine.ParameterCollection">
+            <summary>
+            Internal parameter collection.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.CommandLine.OptionCollection">
+            <summary>
+            Internal option collection.
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.CommandLineArgumentCollection">
+            <summary>
+            A command line argument collection with alias search capability.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLineArgumentCollection.Keys">
+            <summary>
+            Gets the key collection.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLineArgumentCollection.Values">
+            <summary>
+            Gets the value collection.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.CommandLineArgumentCollection.Item(System.String)">
+            <summary>
+            Gets or sets the entry with the specified key in the <see cref="T:Woof.ConsoleEx.CommandLineArgumentCollection"/>.
+            </summary>
+            <param name="name">Name of the key, or name aliases separated with '|' character.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.CommandLineArgumentCollection.ContainsKey(System.String)">
+            <summary>
+            Returns true if the collection contains specified key or one of its aliases.
+            </summary>
+            <param name="key">Name of the key, or name aliases separated with '|' character.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleEx">
+            <summary>
+            Window console extensions.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleEx.IsHexColorEnabled">
+            <summary>
+            Gets or sets a value indicating that HexColor filter is enabled.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleEx.Size">
+            <summary>
+            Sets console window size to a preset dimensions.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleEx.State">
+            <summary>
+            Gets or sets current console state.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.AssemblyHeader(System.Boolean)">
+            <summary>
+            Displays application header from entry assembly info.
+            </summary>
+            <param name="useColor">If true, color console output <see cref="T:Woof.ConsoleEx.ConsoleFilters.HexColor"/> will be used.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.Log(System.String[])">
+            <summary>
+            Displays messages to console, doesn't block calling thread, locks the console out to prevent mangled text from multiple threads.
+            </summary>
+            <param name="messages">One or more messages to display.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.LogDebug(System.Int32,System.String[])">
+            <summary>
+            Displays one or more debug messages on console after initial "DEBUG: ", doesn't block the calling thread.
+            </summary>
+            <param name="serverity">0: debug, 1: warning, 2: error.</param>
+            <param name="messages">Messages to log.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.LogDebug(System.Char,System.String[])">
+            <summary>
+            Displays one or more debug messages on console after initial "DEBUG: ", doesn't block the calling thread.
+            </summary>
+            <param name="severity">Severity code: 'I' for debug, 'W' for warning, 'E' for error.</param>
+            <param name="messages">Messages to log.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.HeaderMessage(System.String)">
+            <summary>
+            Displays header message.
+            </summary>
+            <param name="message">Header message.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.ErrorMessage(System.String)">
+            <summary>
+            Displays error message.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.ErrorValue(System.Object)">
+            <summary>
+            Returns value as string with optional error color format.
+            </summary>
+            <param name="value">A value convertible to string.</param>
+            <returns>Formatted value.</returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.CorrectValue(System.Object)">
+            <summary>
+            Returns value as string with optional correct color format.
+            </summary>
+            <param name="value">A value convertible to string.</param>
+            <returns>Formatted value.</returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.Separator">
+            <summary>
+            Displays horizontal line separator across the console window.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.StartMessage(System.String)">
+            <summary>
+            Displays start message and returns progress object used to complete the action.
+            </summary>
+            <param name="message">Message to display.</param>
+            <returns>Progress object used to complete the action.</returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.ItemMessage(System.String)">
+            <summary>
+            Display item as bullet point.
+            </summary>
+            <param name="item">Item.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.Complete(Woof.ConsoleEx.ConsoleProgress,System.Boolean)">
+            <summary>
+            Completes the action started with the <see cref="M:Woof.ConsoleEx.ConsoleEx.StartMessage(System.String)"/>.
+            </summary>
+            <param name="progress">Progress object.</param>
+            <param name="success">Status of the operation performed after <see cref="M:Woof.ConsoleEx.ConsoleEx.StartMessage(System.String)"/>.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleEx.WaitForCtrlC(System.String)">
+            <summary>
+            Displays a message and waits until Ctrl+C is pressed.
+            </summary>
+            <param name="message">Optional alternative message to display.</param>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleSize">
+            <summary>
+            Console size enumeration.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleSize.Normal">
+            <summary>
+            80x25
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleSize.Double">
+            <summary>
+            160x50
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleSize.Max">
+            <summary>
+            Takes all available space
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleState">
+            <summary>
+            Console state data.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.Background">
+            <summary>
+            Console background color.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.Foreground">
+            <summary>
+            Console foreground color.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.X">
+            <summary>
+            Cursor X coordinate.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.Y">
+            <summary>
+            Cursor Y coordinate.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.WinX">
+            <summary>
+            Window to buffer X coordinate.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleState.WinY">
+            <summary>
+            Window to buffer Y coorinate.
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleFilters.Delay">
+            <summary>
+            Introduces a delay to console output.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.Delay.Ms">
+            <summary>
+            Character delay in milliseconds.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.Delay.#ctor(System.Int32)">
+            <summary>
+            Creates the filter over text output.
+            </summary>
+            <param name="ms">Character delay in milliseconds.</param>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleFilters.Delay.Encoding">
+            <summary>
+            Gets bound console encoding.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.Delay.Write(System.Char)">
+            <summary>
+            Writes a character to the console or tries parse it.
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.Delay.Out">
+            <summary>
+            Console out text writer.
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleFilters.HexColor">
+            <summary>
+            Text filter that understands hexadecimal color codes and sets console colors to their closest match.
+            <para>USAGE: Console.SetOut(new HexColorFilter());</para>
+            </summary>
+            <remarks>
+            <para>
+            First backtick character starts hex color mode. Next backtick ends it.
+            Backtick not followed by hexadecimal digit resets default colors.
+            </para>
+            <para>
+            Hex colors consist of 3 hexadecimal digits (are 12-bit hexadecimal numbers).
+            Exact color values are normalized to match preset console colors.
+            </para>
+            <para>
+            If 4-th special charcter is present ('b' or '_'), the color is interpreted as background color.
+            </para>
+            <para>Example:</para>
+            <para>"Hello `070`green` world!" - outputs the word "green"... green.</para>
+            <para>"Hello `000``700b`red` world!" - outputs the word "red"... black on red background.</para>
+            </remarks>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.#ctor">
+            <summary>
+            Creates the filter over text output.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.HexColor.Colors">
+            <summary>
+            Console normalized colors table.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleFilters.HexColor.Encoding">
+            <summary>
+            Gets bound console encoding.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.Write(System.Char)">
+            <summary>
+            Writes a character to the console or tries parse it.
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.ParseCode">
+            <summary>
+            Parses matched text as hex code.
+            If code matches the console colors are set accordingly.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.Reset(System.Nullable{System.Char})">
+            <summary>
+            Resets console colors and exits hex code mode.
+            </summary>
+            <param name="c">Optional character to output.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.Exit">
+            <summary>
+            Exits hex code mode.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.IsHex(System.Char)">
+            <summary>
+            Tests a character for being a hexadecimal digit.
+            </summary>
+            <param name="c">Character.</param>
+            <returns>True if hexadecimal digit.</returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.IsBgc(System.Char)">
+            <summary>
+            Tests a character for being background color flag.
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleFilters.HexColor.Normalize(System.Int32)">
+            <summary>
+            Normalizes 4-bit number to make it one of 4 possible values.
+            </summary>
+            <param name="n">Number.</param>
+            <returns>Normalized number.</returns>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.HexColor.HexCode">
+            <summary>
+            Hex color code current buffer.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.HexColor.IsHexColorMode">
+            <summary>
+            True if the filter is currently in hex color mode.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleFilters.HexColor.Out">
+            <summary>
+            Console out text writer.
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.ConsoleProgress">
+            <summary>
+            A special object allowing to display dots by one thread, while the other already displayed something else on the console.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleProgress.B">
+            <summary>
+            Backup of console state.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.ConsoleProgress.L">
+            <summary>
+            Last console state.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.ConsoleProgress.C">
+            <summary>
+            Current console state.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleProgress.#ctor">
+            <summary>
+            Creates progress dots placeholder at current cursor position.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleProgress.Dot">
+            <summary>
+            Displays subsequent progress dot.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.ConsoleProgress.Done(System.String)">
+            <summary>
+            Ends current dot bar with a message.
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:Woof.ConsoleEx.HexDump">
+            <summary>
+            A stream to output hexadecimal dump to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="T:Woof.ConsoleEx.HexDump.Formats">
+            <summary>
+            Output formmats.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.Formats.Plain">
+            <summary>
+            Plain text.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.Formats.HexColor">
+            <summary>
+            Color formatting usable with HexColor console filter.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.Format">
+            <summary>
+            Gets or sets HexDump output format.
+            DEFAULT: PlainText.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.TextEncoding">
+            <summary>
+            Text encoding used to decode data.
+            DEFAULT: ASCII.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.#ctor">
+            <summary>
+            Creates a new <see cref="T:Woof.ConsoleEx.HexDump"/> object.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatOffset">
+            <summary>
+            A string format for offset values.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatByte">
+            <summary>
+            A string format for a single byte.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatBlockSeparator">
+            <summary>
+            A string format for block separators.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatTextSeparator">
+            <summary>
+            A string format for text separators.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatText">
+            <summary>
+            A string format for text dump.
+            </summary>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump.FormatNull">
+            <summary>
+            A string format for null (empty) bytes.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.CanRead">
+            <summary>
+            This stream cannot be read.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.CanSeek">
+            <summary>
+            This stream cannot be seeked.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.CanWrite">
+            <summary>
+            This stream can be written to.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.Length">
+            <summary>
+            This stream does not return any length.
+            </summary>
+        </member>
+        <member name="P:Woof.ConsoleEx.HexDump.Position">
+            <summary>
+            This stream doeasn't support setting position.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.Flush">
+            <summary>
+            This stream ignores <see cref="M:Woof.ConsoleEx.HexDump.Flush"/> method.
+            </summary>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This stream cannot be read.
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            This stream cannot be seeked.
+            </summary>
+            <param name="offset"></param>
+            <param name="origin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.SetLength(System.Int64)">
+            <summary>
+            The lenght of this stream cannot be set.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Outputs data as hexadecimal formatted dump.
+            </summary>
+            <param name="buffer">Buffer to dump.</param>
+            <param name="offset">Optional offset (should be multiple of 16)</param>
+            <param name="count">Number of bytes to dump.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.WriteData(System.Byte[])">
+            <summary>
+            Dumps entire buffer using colored output if available.
+            </summary>
+            <param name="buffer">Buffer with data to dump.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.WriteData(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Dumps a specified buffer slice using colored output if available.
+            </summary>
+            <param name="buffer">Buffer with data to dump.</param>
+            <param name="offset">First byte offset.</param>
+            <param name="length">Dump length.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.WriteData(System.IO.Stream)">
+            <summary>
+            Dumps entire stream using colored output if available.
+            </summary>
+            <param name="stream">Stream to dump.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.WriteData(System.IO.Stream,System.Int32,System.Int32)">
+            <summary>
+            Dumps a specified portion of stream using colored output if available.
+            </summary>
+            <param name="stream">Stream to dump.</param>
+            <param name="offset">Stream offset to seek.</param>
+            <param name="length">Dump length.</param>
+        </member>
+        <member name="M:Woof.ConsoleEx.HexDump.TextDecode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decodes the text from bytes using current <see cref="P:Woof.ConsoleEx.HexDump.TextEncoding"/>.
+            </summary>
+            <param name="buffer">Data buffer.</param>
+            <param name="offset">Offset of the first character.</param>
+            <param name="count">Number of bytes to decode.</param>
+            <returns>Unicode string.</returns>
+        </member>
+        <member name="F:Woof.ConsoleEx.HexDump._Format">
+            <summary>
+            Output format cache.
+            </summary>
+        </member>
+    </members>
+</doc>
