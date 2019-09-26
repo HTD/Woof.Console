@@ -8,7 +8,7 @@ class Demo {
 
     static void Main() {        
         Console.SetOut(new HexColor());
-        Console.WriteLine("Testing `0ff`Woof.Console`:");
+        Console.WriteLine("Testing `066`Woof.Console`:");
         Console.WriteLine();
         var tasksCount = TasksLeft = 8;
         for (int i = 0; i < tasksCount; i++) {
@@ -21,7 +21,7 @@ class Demo {
         }
         Semaphore.Wait();
         Console.WriteLine();
-        var hexDump = new HexDump { Format = HexDump.Formats.HexColor };
+        using var hexDump = new HexDump { Format = HexDump.Formats.HexColor };
         var testData = new byte[48];
         PRNG.NextBytes(testData);
         hexDump.Write(testData);
