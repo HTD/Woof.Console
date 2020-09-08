@@ -195,7 +195,8 @@ namespace Woof.ConsoleEx {
         /// </summary>
         /// <param name="buffer">Buffer with data to dump.</param>
         public static void WriteData(byte[] buffer) {
-            using (var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain }) d.Write(buffer, 0, buffer?.Length ?? 0);
+            using var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain };
+            d.Write(buffer, 0, buffer?.Length ?? 0);
         }
 
         /// <summary>
@@ -205,7 +206,8 @@ namespace Woof.ConsoleEx {
         /// <param name="offset">First byte offset.</param>
         /// <param name="length">Dump length.</param>
         public static void WriteData(byte[] buffer, int offset, int length) {
-            using (var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain }) d.Write(buffer, offset, length);
+            using var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain };
+            d.Write(buffer, offset, length);
         }
 
         /// <summary>
@@ -213,7 +215,8 @@ namespace Woof.ConsoleEx {
         /// </summary>
         /// <param name="stream">Stream to dump.</param>
         public static void WriteData(Stream stream) {
-            using (var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain }) stream.CopyTo(d);
+            using var d = new HexDump() { Format = ConsoleEx.IsHexColorEnabled ? Formats.HexColor : Formats.Plain };
+            stream.CopyTo(d);
         }
 
         /// <summary>
@@ -223,12 +226,11 @@ namespace Woof.ConsoleEx {
         /// <param name="offset">Stream offset to seek.</param>
         /// <param name="length">Dump length.</param>
         public static void WriteData(Stream stream, int offset, int length) {
-            using (var d = new HexDump() { Format = Formats.HexColor }) {
-                var buffer = new byte[length];
-                stream.Position = offset;
-                stream.Read(buffer, 0, length);
-                d.Write(buffer, 0, length);
-            }
+            using var d = new HexDump() { Format = Formats.HexColor };
+            var buffer = new byte[length];
+            stream.Position = offset;
+            stream.Read(buffer, 0, length);
+            d.Write(buffer, 0, length);
         }
 
         /// <summary>
