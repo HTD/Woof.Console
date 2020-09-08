@@ -16,6 +16,7 @@ ADD: ConsoleEx.WaitForCtrlCAsync().</PackageReleaseNotes>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <LangVersion>8.0</LangVersion>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Source\Woof\2.x\Woof.Console\Woof.Console.xml</DocumentationFile>
@@ -27,6 +28,10 @@ ADD: ConsoleEx.WaitForCtrlCAsync().</PackageReleaseNotes>
     <Compile Remove="Woof.Console.Test\**" />
     <EmbeddedResource Remove="Woof.Console.Test\**" />
     <None Remove="Woof.Console.Test\**" />
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Woof.Core" Version="2.2.0" />
