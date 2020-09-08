@@ -218,14 +218,25 @@ namespace Woof.ConsoleEx {
         /// Displays a message and waits until Ctrl+C is pressed.
         /// </summary>
         /// <param name="message">Optional alternative message to display.</param>
-        public static void WaitForCtrlC(string message = "Press Ctrl+C to exit") {
-            using (var semaphore = new ManualResetEventSlim()) {
-                void handler(object s, ConsoleCancelEventArgs e) { e.Cancel = true; semaphore.Set(); }
-                Console.CancelKeyPress += handler;
-                Console.WriteLine(IsHexColorEnabled ? $"`fff`{message}.`" : message);
-                semaphore.Wait();
-                Console.CancelKeyPress -= handler;
-            }
+        public static void WaitForCtrlC(string message = default) {
+            using var semaphore = new SemaphoreSlim(0, 1);
+            void handler(object s, ConsoleCancelEventArgs e) { Console.CancelKeyPress -= handler; e.Cancel = true; semaphore.Release(); }
+            Console.CancelKeyPress += handler;
+            Console.WriteLine(message);
+            semaphore.Wait();
+        }
+
+        /// <summary>
+        /// Waits for Ctrl+C.
+        /// </summary>
+        /// <param name="message">Message to display.</param>
+        /// <returns>Task completed when the Ctrl+C is pressed.</returns>
+        public static async Task WaitForCtrlCAsync(string message = default) {
+            using var semaphore = new SemaphoreSlim(0, 1);
+            void handler(object s, ConsoleCancelEventArgs e) { Console.CancelKeyPress -= handler; e.Cancel = true; semaphore.Release(); }
+            Console.CancelKeyPress += handler;
+            Console.WriteLine(message);
+            await semaphore.WaitAsync();
         }
 
     }
