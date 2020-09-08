@@ -102,8 +102,8 @@ namespace Woof.ConsoleEx {
             Console.Title = ai.Product;
             Separator();
             Console.WriteLine(useColor ? $"`fff`{ai.Title} version {ai.Version}`" : $"{ai.Title} version {ai.Version}");
-            Console.WriteLine(useColor ? $"`077`{ai.Description}`" : ai.Description);
-            Console.WriteLine(useColor ? $"`444`{ai.Copyright}, All rights reserved.`" : ai.Copyright);
+            if (!String.IsNullOrEmpty(ai.Description)) Console.WriteLine(useColor ? $"`077`{ai.Description}`" : ai.Description);
+            if (!String.IsNullOrEmpty(ai.Copyright)) Console.WriteLine(useColor ? $"`444`{ai.Copyright}`" : ai.Copyright);
             Separator();
         }
 

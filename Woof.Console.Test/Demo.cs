@@ -8,6 +8,7 @@ class Demo {
 
     static void Main() {        
         Console.SetOut(new HexColor());
+        ConsoleEx.AssemblyHeader(useColor: true);
         Console.WriteLine("Testing `066`Woof.Console`:");
         Console.WriteLine();
         var tasksCount = TasksLeft = 8;

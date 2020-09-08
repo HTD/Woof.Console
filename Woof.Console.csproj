@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Authors>Adam Łyskawa</Authors>
     <Company>CodeDog Ltd</Company>
     <Description>Console extensions and filters allowing colored output and real time progress dots.
 See demo in sources for details.</Description>
     <Copyright>(c)2020 by CodeDog Ltd.</Copyright>
     <PackageProjectUrl>https://github.com/HTD/Woof.Console</PackageProjectUrl>
-    <PackageReleaseNotes>CHANGE: ConsoleEx.WaitForCtrlC() signature (no default message).
-ADD: ConsoleEx.WaitForCtrlCAsync().</PackageReleaseNotes>
+    <PackageReleaseNotes>FIX: ConsoleEx.AssemblyHeader().</PackageReleaseNotes>
     <PackageTags>code core codedog dotnet system console</PackageTags>
     <Product>Woof.Console</Product>
     <PackageId>Woof.Console</PackageId>
@@ -34,6 +33,6 @@ ADD: ConsoleEx.WaitForCtrlCAsync().</PackageReleaseNotes>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Woof.Core" Version="2.2.0" />
+    <PackageReference Include="Woof.Core" Version="2.2.1" />
   </ItemGroup>
 </Project>
